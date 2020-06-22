@@ -1,0 +1,88 @@
+<div class="container">
+    <h3>Books Operation</h3>
+    <div class="row">
+        <form [formGroup]="BookForm" (ngSubmit)="this[EventValue]()">
+            <input type="hidden" formControlName="id">
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label for="titleText">Title</label>
+                    <input type="text" class="form-control" id="titleText" formControlName="title">
+                    <div *ngIf="submitted && BookForm.controls.title.errors" class="text-danger">
+                        <div *ngIf="BookForm.controls.title.errors.required">Title is required</div>
+                    </div>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="isbnText">ISBN</label>
+                    <input type="text" class="form-control" id="isbnText" formControlName="isbn">
+                    <div *ngIf="submitted && BookForm.controls.isbn.errors" class="text-danger">
+                        <div *ngIf="BookForm.controls.isbn.errors.required">isbn is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="categorySelect">Category</label>
+                        <select class="form-control" id="categorySelect" formControlName="categoryid">
+                            <option value="" disabled>Choose your category</option>
+                            <option *ngFor="let categoryItem of categories" [ngValue]="categoryItem.id">{{categoryItem.name}}</option>
+                          </select>
+                        <div *ngIf="submitted && BookForm.controls.categoryid.errors" class="text-danger">
+                            <div *ngIf="BookForm.controls.categoryid.errors.required">Category is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="authorSelect">Author</label>
+                        <select class="form-control" id="authorSelect" formControlName="authorid">
+                            <option value="" disabled>Choose your author</option>
+                            <option *ngFor="let itemAuthor of authors" [ngValue]="itemAuthor.id">{{itemAuthor.name}} {{itemAuthor.lastName}}</option>
+                          </select>
+                        <div *ngIf="submitted && BookForm.controls.authorid.errors" class="text-danger">
+                            <div *ngIf="BookForm.controls.authorid.errors.required">Author is required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <button type="submit" class="btn btn-primary btn-block">{{EventValue}}</button>
+                </div>
+                <div class="col-md-6">
+                    <button type="button" class="btn btn-secondary btn-block" (click)="resetForm()">Reset</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="row justify-content-md-end">
+        <div class="col-md-4 form-group">
+            <input type="text" class="form-control" placeholder="Search" name="textSearch" [(ngModel)]="textSearch">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-striped">
+                <thead>
+                    <th>Id</th>
+                    <th>Title</th>
+                    <th>ISBN</th>
+                    <th>Category</th>
+                    <th>Author</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </thead>
+
+                <tr *ngFor="let d of data | filterBook : textSearch">
+                    <td>{{d.id}}</td>
+                    <td>{{d.title}}</td>
+                    <td>{{d.isbn}}</td>
+                    <td>{{d.category.name}}</td>
+                    <td>{{d.author.name}} {{d.author.lastName}}</td>
+                    <td><a (click)="EditData(d)" class="btn btn-warning">Edit</a></td>
+                    <td><a (click)="deleteData(d.id)" class="btn btn-danger">Delete</a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,57 @@
+<div class="container">
+    <h3>Category Operation</h3>
+    <div class="row">
+        <form [formGroup]="CategoryForm" (ngSubmit)="this[EventValue]()">
+            <input type="hidden" formControlName="id">
+            <div class="row">
+                <div class="col-md-12 form-group">
+                    <label for="nameText">Name</label>
+                    <input type="text" class="form-control" id="nameText" formControlName="name">
+                    <div *ngIf="submitted && CategoryForm.controls.name.errors" class="text-danger">
+                        <div *ngIf="CategoryForm.controls.name.errors.required">Name is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 form-group">
+                    <label for="descriptionText">Description</label>
+                    <textarea type="text" class="form-control" id="descriptionText" formControlName="description">
+                  </textarea>
+                    <div *ngIf="submitted && CategoryForm.controls.description.errors" class="text-danger">
+                        <div *ngIf="CategoryForm.controls.description.errors.required">Description is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <button type="submit" class="btn btn-primary btn-block">{{EventValue}}</button>
+                </div>
+                <div class="col-md-6">
+                    <button type="button" class="btn btn-secondary btn-block" (click)="resetForm()">Reset</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-striped">
+                <thead>
+                    <th>Id</th>
+                    <th>name</th>
+                    <th>description</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </thead>
+
+                <tr *ngFor="let d of categories">
+                    <td>{{d.id}}</td>
+                    <td>{{d.name}}</td>
+                    <td>{{d.description}}</td>
+                    <td><a (click)="EditData(d)" class="btn btn-warning">Edit</a></td>
+                    <td><a (click)="deleteData(d.id)" class="btn btn-danger">Delete</a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

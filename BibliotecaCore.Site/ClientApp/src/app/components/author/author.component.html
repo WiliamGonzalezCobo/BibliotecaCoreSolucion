@@ -1,0 +1,65 @@
+<div class="container">
+    <h3>Authors Operation</h3>
+    <div class="row">
+        <form [formGroup]="AuthorForm" (ngSubmit)="this[EventValue]()">
+            <input type="hidden" formControlName="id">
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label for="nameText">Name</label>
+                    <input type="text" class="form-control" id="nameText" formControlName="name">
+                    <div *ngIf="submitted && AuthorForm.controls.name.errors" class="text-danger">
+                        <div *ngIf="AuthorForm.controls.name.errors.required">Name is required</div>
+                    </div>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="lastNameText">Last Name</label>
+                    <input type="text" class="form-control" id="lastNameText" formControlName="lastName">
+                    <div *ngIf="submitted && AuthorForm.controls.lastName.errors" class="text-danger">
+                        <div *ngIf="AuthorForm.controls.lastName.errors.required">Last Name is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label for="birthdate">Birthdate</label>
+                    <input type="date" class="form-control" id="birthdate" formControlName="birthdate">
+                    <div *ngIf="submitted && AuthorForm.controls.birthdate.errors" class="text-danger">
+                        <div *ngIf="AuthorForm.controls.birthdate.errors.required">Birthdate is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <button type="submit" class="btn btn-primary btn-block">{{EventValue}}</button>
+                </div>
+                <div class="col-md-6">
+                    <button type="button" class="btn btn-secondary btn-block" (click)="resetForm()">Reset</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-striped">
+                <thead>
+                    <th>Id</th>
+                    <th>name</th>
+                    <th>lastName</th>
+                    <th>Birthdate</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </thead>
+
+                <tr *ngFor="let d of authors">
+                    <td>{{d.id}}</td>
+                    <td>{{d.name}}</td>
+                    <td>{{d.lastName}}</td>
+                    <td>{{d.birthdate}}</td>
+                    <td><a (click)="EditData(d)" class="btn btn-warning">Edit</a></td>
+                    <td><a (click)="deleteData(d.id)" class="btn btn-danger">Delete</a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
