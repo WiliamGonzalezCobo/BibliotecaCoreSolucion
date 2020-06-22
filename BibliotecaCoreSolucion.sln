@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BibliotecaCore.Site", "Bibl
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 Util", "5 Util", "{91244928-1441-44BD-B12B-E0E6F532B03C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BibliotecaCore.Utilities", "BibliotecaCore.Utilities\BibliotecaCore.Utilities.csproj", "{628DB8BC-E689-44A8-A6B8-D08F5BF9F1DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BibliotecaCore.Utilities", "BibliotecaCore.Utilities\BibliotecaCore.Utilities.csproj", "{628DB8BC-E689-44A8-A6B8-D08F5BF9F1DE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
